@@ -4,6 +4,7 @@ import (
 	"context"
 	"dashboard-backend/models"
 	"dashboard-backend/utils"
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -11,7 +12,7 @@ import (
 )
 
 func GetContacts(c *gin.Context) {
-	// search := c.DefaultQuery("search", "")
+	search := c.DefaultQuery("search", "")
 	page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
 	limit, _ := strconv.Atoi(c.DefaultQuery("limit", "5"))
 	offset := (page - 1) * limit
@@ -24,12 +25,14 @@ func GetContacts(c *gin.Context) {
 	query := `
 		SELECT id, name, email, phone 
 		FROM contacts
-		LIMIT $1 OFFSET $2
+		WHERE name ILIKE $1
+		LIMIT $2 OFFSET $3
 	`
 
 	rows, err := conn.Query(
 		context.Background(),
 		query,
+		fmt.Sprintf("%%%s%%", search),
 		limit,
 		offset,
 	)
