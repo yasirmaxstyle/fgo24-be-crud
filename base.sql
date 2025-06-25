@@ -15,4 +15,54 @@ VALUES (
         'test',
         'test@mail.com',
         '083131314545'
+    ),
+    (
+        'Aditya Pratama',
+        'aditya.pratama@email.com',
+        '081234567801'
+    ),
+    (
+        'Bunga Lestari',
+        'bunga.lestari@email.com',
+        '081234567802'
+    ),
+    (
+        'Cahyo Nugroho',
+        'cahyo.nugroho@email.com',
+        '081234567803'
+    ),
+    (
+        'Dinda Sari',
+        'dinda.sari@email.com',
+        '081234567804'
+    ),
+    (
+        'Eko Santoso',
+        'eko.santoso@email.com',
+        '081234567805'
+    ),
+    (
+        'Fitri Ayu',
+        'fitri.ayu@email.com',
+        '081234567806'
+    ),
+    (
+        'Galih Saputra',
+        'galih.saputra@email.com',
+        '081234567807'
+    ),
+    (
+        'Hesti Anindya',
+        'hesti.anindya@email.com',
+        '081234567808'
+    ),
+    (
+        'Irfan Maulana',
+        'irfan.maulana@email.com',
+        '081234567809'
+    ),
+    (
+        'Joko Wibisono',
+        'joko.wibisono@email.com',
+        '081234567810'
     );
