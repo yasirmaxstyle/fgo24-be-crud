@@ -4,6 +4,7 @@ import (
 	"context"
 	"dashboard-backend/models"
 	"dashboard-backend/utils"
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -50,4 +51,8 @@ func AddContact(c *gin.Context) {
 		"message": "Contact created successfully",
 		"contact": contact,
 	})
+
+	//reset key in redis
+	utils.RedisClient().Del(context.Background(), "/contacts")
+	utils.RedisClient().Del(context.Background(), fmt.Sprintf("/%d", contact.ID))
 }
