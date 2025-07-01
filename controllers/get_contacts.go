@@ -25,7 +25,7 @@ func GetContacts(c *gin.Context) {
 		conn.Conn().Close(context.Background())
 	}()
 
-	result := utils.RedisClient.Exists(context.Background(), c.Request.RequestURI)
+	result := utils.RedisClient().Exists(context.Background(), c.Request.RequestURI)
 	if result.Val() == 0 {
 		query := `
 			SELECT id, name, email, phone 
@@ -64,7 +64,7 @@ func GetContacts(c *gin.Context) {
 			return
 		}
 
-		utils.RedisClient.Set(context.Background(), c.Request.RequestURI, (encoded), 0)
+		utils.RedisClient().Set(context.Background(), c.Request.RequestURI, (encoded), 0)
 
 		countQuery := "SELECT COUNT(*) FROM contacts"
 		if err := conn.QueryRow(context.Background(), countQuery).Scan(&total); err != nil {
@@ -82,7 +82,7 @@ func GetContacts(c *gin.Context) {
 			},
 		})
 	} else {
-		data := utils.RedisClient.Get(context.Background(), c.Request.RequestURI)
+		data := utils.RedisClient().Get(context.Background(), c.Request.RequestURI)
 		str := data.Val()
 		contacts := []models.Contact{}
 		json.Unmarshal([]byte(str), &contacts)

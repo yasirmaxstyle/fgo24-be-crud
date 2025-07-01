@@ -4,6 +4,7 @@ import (
 	"context"
 	"dashboard-backend/models"
 	"dashboard-backend/utils"
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -65,4 +66,7 @@ func UpdateContact(c *gin.Context) {
 		"message": "Contact updated successfully",
 		"contact": contact,
 	})
+
+	utils.RedisClient().Del(context.Background(), "/contacts")
+	utils.RedisClient().Del(context.Background(), fmt.Sprintf("/%d", id))
 }

@@ -3,6 +3,7 @@ package controllers
 import (
 	"context"
 	"dashboard-backend/utils"
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -37,4 +38,7 @@ func DeleteContact(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{"message": "Contact deleted successfully"})
+
+	utils.RedisClient().Del(context.Background(), "/contacts")
+	utils.RedisClient().Del(context.Background(), fmt.Sprintf("/%d", id))
 }
