@@ -1,0 +1,161 @@
+basePath: /
+definitions:
+  models.ContactInput:
+    properties:
+      email:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: RESTful API for contact list
+  title: RESTful API Contacts
+  version: "1.0"
+paths:
+  /contacts/:
+    get:
+      consumes:
+      - application/json
+      description: Get all contacts
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get all contacts
+      tags:
+      - contact
+    post:
+      consumes:
+      - application/json
+      description: Add a new contact
+      parameters:
+      - description: Add contact
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.ContactInput'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Add a new contact
+      tags:
+      - contact
+  /contacts/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a contact
+      parameters:
+      - description: Delete contact
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Delete a contact
+      tags:
+      - contact
+    get:
+      consumes:
+      - application/json
+      description: Get contact by id
+      parameters:
+      - description: Get contact by id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Get contact by id
+      tags:
+      - contact
+    patch:
+      consumes:
+      - application/json
+      description: Update contact
+      parameters:
+      - description: Update contact
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.ContactInput'
+      - description: Update contact
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: Update contact
+      tags:
+      - contact
+swagger: "2.0"
