@@ -1,11 +1,19 @@
 package main
 
 import (
-	"dashboard-backend/routers"
+	"dashboard-backend/routes"
 	"dashboard-backend/utils"
+	"fmt"
+	"os"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
+
+//@title RESTful API Contacts
+//@version 1.0
+//@description RESTful API for contact list
+//@BasePath /
 
 func main() {
 	r := gin.Default()
@@ -25,7 +33,11 @@ func main() {
 
 	utils.InitDB()
 
-	routers.CombineRouter(r)
+	routes.CombineRouter(r)
 
-	r.Run()
+	godotenv.Load()
+	port := fmt.Sprintf(":%s", os.Getenv("APP_PORT"))
+
+	r.Run(port)
+	fmt.Printf("program runs on port: %s\n", port)
 }
