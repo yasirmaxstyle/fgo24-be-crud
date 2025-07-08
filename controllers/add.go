@@ -10,6 +10,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Add contacts godoc
+// @Summary Add a new contact
+// @Description Add a new contact
+// @Tags contact
+// @Accept json
+// @Produce json
+// @Param request body models.ContactInput true "Add contact"
+// @Success 201 {string} string
+// @Failure 400 {string} string
+// @Failure 500 {string} string
+// @Router /contacts/ [post]
 func AddContact(c *gin.Context) {
 	var req models.ContactInput
 	if err := c.ShouldBind(&req); err != nil {

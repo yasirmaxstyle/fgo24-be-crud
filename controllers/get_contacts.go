@@ -13,6 +13,16 @@ import (
 	"github.com/jackc/pgx/v5"
 )
 
+// Get contacts godoc
+// @Summary Get all contacts
+// @Description Get all contacts
+// @Tags contact
+// @Accept json
+// @Produce json
+// @Success 201 {string} string
+// @Failure 400 {string} string
+// @Failure 500 {string} string
+// @Router /contacts/ [get]
 func GetContacts(c *gin.Context) {
 	search := c.DefaultQuery("search", "")
 	page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
@@ -98,6 +108,17 @@ func GetContacts(c *gin.Context) {
 	}
 }
 
+// Get contact by id godoc
+// @Summary Get contact by id
+// @Description Get contact by id
+// @Tags contact
+// @Accept json
+// @Produce json
+// @Param id path integer true "Get contact by id"
+// @Success 201 {string} string
+// @Failure 400 {string} string
+// @Failure 500 {string} string
+// @Router /contacts/{id} [get]
 func GetContactByID(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
 	if err != nil {

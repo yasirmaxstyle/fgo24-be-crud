@@ -11,6 +11,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Update contact godoc
+// @Summary Update contact
+// @Description Update contact
+// @Tags contact
+// @Accept json
+// @Produce json
+// @Param request body models.ContactInput true "Update contact"
+// @Param id path integer true "Update contact"
+// @Success 201 {string} string
+// @Failure 400 {string} string
+// @Failure 500 {string} string
+// @Router /contacts/{id} [patch]
 func UpdateContact(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
 	if err != nil {

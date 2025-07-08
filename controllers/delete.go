@@ -10,6 +10,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// Delete contacts godoc
+// @Summary Delete a contact
+// @Description Delete a contact
+// @Tags contact
+// @Accept json
+// @Produce json
+// @Param id path integer true "Delete contact"
+// @Success 201 {string} string
+// @Failure 400 {string} string
+// @Failure 500 {string} string
+// @Router /contacts/{id} [delete]
 func DeleteContact(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 64)
 	if err != nil {
