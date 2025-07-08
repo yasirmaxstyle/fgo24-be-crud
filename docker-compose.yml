@@ -1,0 +1,30 @@
+services:
+    app:
+        build: .
+        networks:
+            - netapp
+        ports:
+            - 8080:8080
+    postgres:
+        image: postgres
+        environment:
+            - POSTGRES_PASSWORD=1
+        ports:
+            - 5432:5432
+        volumes:
+            - data_postgres:/var/lib/postgresql/data
+        networks:
+            - netapp
+    redis:
+        image: redis
+        ports:
+            - 6379:6379
+        volumes:
+            - data_redis:/data
+        networks:
+            - netapp
+volumes:
+    data_postgres:
+    data_redis:
+networks:
+    netapp:
