@@ -2,6 +2,7 @@ package utils
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"os"
 
@@ -14,8 +15,16 @@ func DBConnect() *pgxpool.Conn {
 	if err != nil {
 		log.Fatal("Error loading env file")
 	}
+	connectionString := fmt.Sprintf(
+		"postgres://%s:%s@%s:%s/%s",
+		os.Getenv("PGUSER"),
+		os.Getenv("PGPASSWORD"),
+		os.Getenv("PGHOST"),
+		os.Getenv("PGPORT"),
+		os.Getenv("PGDATABASE"),
+	)
 
-	pool, err := pgxpool.New(context.Background(), os.Getenv("DATABASE_URL"))
+	pool, err := pgxpool.New(context.Background(), connectionString)
 	if err != nil {
 		log.Fatal("Failed to create connection pool:", err)
 	}
